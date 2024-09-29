@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="Menu">
+    <file>Error.png</file>
+    <file>Mechanic.png</file>
+    <file>Warehouse.png</file>
+    <file>Recipe.png</file>
+  </qresource>
+</RCC>
