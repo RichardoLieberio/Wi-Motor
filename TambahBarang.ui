@@ -31,38 +31,30 @@
 	font-size: 14px;
 }
 
-#kode,
-#nama,
-#kuantiti,
-#lokasi {
+#kode_input,
+#nama_input,
+#kuantiti_input,
+#lokasi_input {
 	padding: 4px 8px;
 	font-size: 14px;
 	color: rgb(30, 30, 30);
 }
 
-#kode:hover,
-#nama:hover,
-#kuantiti:hover,
-#lokasi:hover {
+#kode_input:hover,
+#nama_input:hover,
+#kuantiti_input:hover,
+#lokasi_input:hover {
     border: 1px solid rgb(73, 0, 131);
 }
 
-#kode:focus,
-#nama:focus,
-#kuantiti:focus,
-#lokasi:focus {
+#kode_input:focus,
+#nama_input:focus,
+#kuantiti_input:focus,
+#lokasi_input:focus {
     border: 1px solid rgb(133, 0, 237);
 }
 
-#kode_count,
-#nama_count,
-#lokasi_count {
-	margin-left: 4px;
-	color: rgb(30, 30, 30);
-	font-size: 12px;
-}
-
-#batal {
+#batal_btn {
 	padding: 5px 0;
 	font-size: 14px;
 	color: rgb(88, 0, 169);
@@ -70,11 +62,11 @@
 	border: 1px solid  rgb(88, 0, 169);
 }
 
-#batal:hover {
+#batal_btn:hover {
 	background-color: rgb(215, 215, 215);
 }
 
-#simpan {
+#simpan_btn {
 	padding: 5px 0;
 	font-size: 14px;
 	color: rgb(255, 255, 255);
@@ -82,7 +74,7 @@
 	border: 1px solid  rgb(88, 0, 169);
 }
 
-#simpan:hover {
+#simpan:hover_btn {
 	background-color: rgb(69, 0, 133);
 }</string>
   </property>
@@ -185,7 +177,7 @@
            </spacer>
           </item>
           <item row="5" column="3">
-           <widget class="QLineEdit" name="lokasi">
+           <widget class="QLineEdit" name="lokasi_input">
             <property name="minimumSize">
              <size>
               <width>300</width>
@@ -214,7 +206,7 @@
            </widget>
           </item>
           <item row="0" column="3">
-           <widget class="QLineEdit" name="kode">
+           <widget class="QLineEdit" name="kode_input">
             <property name="minimumSize">
              <size>
               <width>300</width>
@@ -294,7 +286,7 @@
            </spacer>
           </item>
           <item row="1" column="3">
-           <widget class="QLineEdit" name="nama">
+           <widget class="QLineEdit" name="nama_input">
             <property name="minimumSize">
              <size>
               <width>300</width>
@@ -323,7 +315,7 @@
            </widget>
           </item>
           <item row="3" column="3">
-           <widget class="QLineEdit" name="kuantiti">
+           <widget class="QLineEdit" name="kuantiti_input">
             <property name="minimumSize">
              <size>
               <width>300</width>
@@ -359,7 +351,7 @@
            </spacer>
           </item>
           <item>
-           <widget class="QPushButton" name="batal">
+           <widget class="QPushButton" name="batal_btn">
             <property name="minimumSize">
              <size>
               <width>80</width>
@@ -381,7 +373,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="simpan">
+           <widget class="QPushButton" name="simpan_btn">
             <property name="minimumSize">
              <size>
               <width>80</width>
@@ -411,8 +403,6 @@
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="assets/resources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

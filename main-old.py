@@ -1,66 +1,10 @@
 import sys
-import sqlite3
 from PyQt5 import QtWidgets, QtCore, uic
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import Qt
 
-class Sparepart:
-    def __init__(self):
-        self.__conn = sqlite3.connect('wimotor.db')
-        self.__create_table__()
-        self.__fetch_data__()
-
-    def __create_table__(self):
-        cursor = self.__conn.cursor()
-        cursor.execute('''
-            CREATE TABLE IF NOT EXISTS sparepart (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                kode_barang TEXT(50),
-                nama_barang TEXT(255),
-                kuantiti INTEGER NOT NULL,
-                lokasi TEXT(255)
-            )
-        ''')
-        self.__conn.commit()
-
-    def __fetch_data__(self):
-        cursor = self.__conn.cursor()
-        cursor.execute('''
-            SELECT * FROM sparepart
-            ORDER BY id DESC
-        ''')
-        self.__data = cursor.fetchall()
-
-    def get_data(self):
-        return self.__data
-
-    def tambah_barang_baru(self, kode, nama, kuantiti, lokasi):
-        data = (kode, nama, kuantiti, lokasi)
-        cursor = self.__conn.cursor()
-        cursor.execute('''
-            INSERT INTO sparepart (kode_barang, nama_barang, kuantiti, lokasi)
-            VALUES (?, ?, ?, ?)
-        ''', data)
-        self.__conn.commit()
-
-    def update_kuantiti(self, id, kuantiti):
-        cursor = self.__conn.cursor()
-        cursor.execute('''
-            UPDATE sparepart
-            SET kuantiti = ?
-            WHERE id = ?
-        ''', (kuantiti, id))
-        self.__conn.commit()
-
-    def hapus_barang(self):
-        id = (2,)
-        cursor = self.__conn.cursor()
-        cursor.execute('''
-            DELETE FROM sparepart
-            WHERE id = ?
-        ''', id)
-        self.__conn.commit()
+from models.sparepart import Sparepart
 
 class App(QMainWindow):
     def __init__(self):

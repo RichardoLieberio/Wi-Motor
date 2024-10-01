@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>995</width>
+    <width>984</width>
     <height>599</height>
    </rect>
   </property>
@@ -85,7 +85,7 @@ QScrollArea {
     border: 1px solid rgb(133, 0, 237);
 }
 
-#tambah {
+#tambah_barang_btn {
 	padding: 5px 0;
 	font-size: 14px;
 	color: rgb(255, 255, 255);
@@ -93,15 +93,15 @@ QScrollArea {
 	border: 1px solid  rgb(88, 0, 169);
 }
 
-#tambah:hover {
+#tambah_barang_btn:hover {
 	background-color: rgb(69, 0, 133);
 }
 
-#table_header {
+#gudang_table_header {
 	background-color: rgb(30, 30, 30);
 }
 
-#table_header QLabel {
+#gudang_table_header QLabel {
 	font-size: 14px;
 	color: rgb(255, 255, 255);
 }</string>
@@ -210,7 +210,7 @@ QScrollArea {
            <number>0</number>
           </property>
           <item>
-           <widget class="QPushButton" name="gudang">
+           <widget class="QPushButton" name="gudang_menu">
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
@@ -218,8 +218,8 @@ QScrollArea {
              <string>Gudang</string>
             </property>
             <property name="icon">
-             <iconset resource="assets/resources.qrc">
-              <normaloff>:/Menu/Warehouse.png</normaloff>:/Menu/Warehouse.png</iconset>
+             <iconset resource="resources.qrc">
+              <normaloff>:/Menu/assets/Warehouse.png</normaloff>:/Menu/assets/Warehouse.png</iconset>
             </property>
             <property name="checkable">
              <bool>true</bool>
@@ -230,7 +230,7 @@ QScrollArea {
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="bon">
+           <widget class="QPushButton" name="bon_menu">
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
@@ -238,8 +238,8 @@ QScrollArea {
              <string>Bon</string>
             </property>
             <property name="icon">
-             <iconset resource="assets/resources.qrc">
-              <normaloff>:/Menu/Recipe.png</normaloff>:/Menu/Recipe.png</iconset>
+             <iconset resource="resources.qrc">
+              <normaloff>:/Menu/assets/Recipe.png</normaloff>:/Menu/assets/Recipe.png</iconset>
             </property>
             <property name="checkable">
              <bool>true</bool>
@@ -250,13 +250,13 @@ QScrollArea {
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="mekanik">
+           <widget class="QPushButton" name="mekanik_menu">
             <property name="text">
              <string>Mekanik</string>
             </property>
             <property name="icon">
-             <iconset resource="assets/resources.qrc">
-              <normaloff>:/Menu/Mechanic.png</normaloff>:/Menu/Mechanic.png</iconset>
+             <iconset resource="resources.qrc">
+              <normaloff>:/Menu/assets/Mechanic.png</normaloff>:/Menu/assets/Mechanic.png</iconset>
             </property>
             <property name="checkable">
              <bool>true</bool>
@@ -308,19 +308,19 @@ QScrollArea {
          <number>0</number>
         </property>
         <item>
-         <widget class="QScrollArea" name="scrollArea">
+         <widget class="QScrollArea" name="gudang_scroll">
           <property name="horizontalScrollBarPolicy">
            <enum>Qt::ScrollBarAlwaysOff</enum>
           </property>
           <property name="widgetResizable">
            <bool>true</bool>
           </property>
-          <widget class="QWidget" name="scrollAreaWidgetContents">
+          <widget class="QWidget" name="gudang_scroll_area">
            <property name="geometry">
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>815</width>
+             <width>804</width>
              <height>599</height>
             </rect>
            </property>
@@ -395,7 +395,7 @@ QScrollArea {
                 </spacer>
                </item>
                <item>
-                <widget class="QPushButton" name="tambah">
+                <widget class="QPushButton" name="tambah_barang_btn">
                  <property name="minimumSize">
                   <size>
                    <width>160</width>
@@ -444,7 +444,7 @@ QScrollArea {
                 <number>0</number>
                </property>
                <item>
-                <widget class="QWidget" name="table_header" native="true">
+                <widget class="QWidget" name="gudang_table_header" native="true">
                  <property name="minimumSize">
                   <size>
                    <width>0</width>
@@ -468,7 +468,7 @@ QScrollArea {
                    <number>11</number>
                   </property>
                   <item>
-                   <widget class="QLabel" name="no">
+                   <widget class="QLabel" name="no_label">
                     <property name="minimumSize">
                      <size>
                       <width>40</width>
@@ -487,7 +487,7 @@ QScrollArea {
                    </widget>
                   </item>
                   <item>
-                   <widget class="QLabel" name="kode">
+                   <widget class="QLabel" name="kode_label">
                     <property name="minimumSize">
                      <size>
                       <width>90</width>
@@ -506,7 +506,7 @@ QScrollArea {
                    </widget>
                   </item>
                   <item>
-                   <widget class="QLabel" name="nama">
+                   <widget class="QLabel" name="nama_label">
                     <property name="minimumSize">
                      <size>
                       <width>250</width>
@@ -519,7 +519,7 @@ QScrollArea {
                    </widget>
                   </item>
                   <item>
-                   <widget class="QLabel" name="kuantiti">
+                   <widget class="QLabel" name="kuantiti_label">
                     <property name="minimumSize">
                      <size>
                       <width>70</width>
@@ -538,7 +538,7 @@ QScrollArea {
                    </widget>
                   </item>
                   <item>
-                   <widget class="QLabel" name="kelola">
+                   <widget class="QLabel" name="kelola_label">
                     <property name="minimumSize">
                      <size>
                       <width>160</width>
@@ -560,32 +560,11 @@ QScrollArea {
                 </widget>
                </item>
                <item>
-                <widget class="QWidget" name="table_body_container" native="true">
-                 <layout class="QGridLayout" name="gridLayout">
-                  <property name="leftMargin">
-                   <number>0</number>
-                  </property>
-                  <property name="topMargin">
-                   <number>0</number>
-                  </property>
-                  <property name="rightMargin">
-                   <number>0</number>
-                  </property>
-                  <property name="bottomMargin">
-                   <number>0</number>
-                  </property>
-                  <property name="spacing">
-                   <number>0</number>
-                  </property>
-                  <item row="0" column="0">
-                   <layout class="QVBoxLayout" name="table_body">
-                    <property name="spacing">
-                     <number>0</number>
-                    </property>
-                   </layout>
-                  </item>
-                 </layout>
-                </widget>
+                <layout class="QVBoxLayout" name="gudang_table_body_layout">
+                 <property name="spacing">
+                  <number>0</number>
+                 </property>
+                </layout>
                </item>
                <item>
                 <spacer name="verticalSpacer_3">
@@ -704,7 +683,7 @@ QScrollArea {
   </widget>
  </widget>
  <resources>
-  <include location="assets/resources.qrc"/>
+  <include location="resources.qrc"/>
  </resources>
  <connections/>
 </ui>
