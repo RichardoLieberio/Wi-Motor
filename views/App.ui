@@ -27,13 +27,6 @@
 	background-color: rgb(30, 30, 30);
 }
 
-#wimotor {
-	padding: 0 24px;
-	color: rgb(255, 255, 255);
-	font-size: 24px;
-	font-weight: bold;
-}
-
 #side_menu QPushButton {
 	padding: 8px 12px;
 	font-size: 14px;
@@ -142,13 +135,13 @@ QScrollArea {
       </property>
       <property name="minimumSize">
        <size>
-        <width>180</width>
+        <width>200</width>
         <height>0</height>
        </size>
       </property>
       <property name="maximumSize">
        <size>
-        <width>180</width>
+        <width>200</width>
         <height>16777215</height>
        </size>
       </property>
@@ -163,7 +156,7 @@ QScrollArea {
         <number>0</number>
        </property>
        <property name="topMargin">
-        <number>24</number>
+        <number>0</number>
        </property>
        <property name="rightMargin">
         <number>0</number>
@@ -174,7 +167,13 @@ QScrollArea {
        <item>
         <widget class="QLabel" name="wimotor">
          <property name="text">
-          <string>Wi Motor</string>
+          <string/>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::AutoText</enum>
+         </property>
+         <property name="pixmap">
+          <pixmap resource="../resources.qrc">:/Menu/assets/wimotor.jpeg</pixmap>
          </property>
         </widget>
        </item>
@@ -189,7 +188,7 @@ QScrollArea {
          <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
-           <height>36</height>
+           <height>60</height>
           </size>
          </property>
         </spacer>
@@ -218,7 +217,7 @@ QScrollArea {
              <string>Gudang</string>
             </property>
             <property name="icon">
-             <iconset resource="resources.qrc">
+             <iconset resource="../resources.qrc">
               <normaloff>:/Menu/assets/Warehouse.png</normaloff>:/Menu/assets/Warehouse.png</iconset>
             </property>
             <property name="checkable">
@@ -238,7 +237,7 @@ QScrollArea {
              <string>Bon</string>
             </property>
             <property name="icon">
-             <iconset resource="resources.qrc">
+             <iconset resource="../resources.qrc">
               <normaloff>:/Menu/assets/Recipe.png</normaloff>:/Menu/assets/Recipe.png</iconset>
             </property>
             <property name="checkable">
@@ -255,7 +254,7 @@ QScrollArea {
              <string>Mekanik</string>
             </property>
             <property name="icon">
-             <iconset resource="resources.qrc">
+             <iconset resource="../resources.qrc">
               <normaloff>:/Menu/assets/Mechanic.png</normaloff>:/Menu/assets/Mechanic.png</iconset>
             </property>
             <property name="checkable">
@@ -320,7 +319,7 @@ QScrollArea {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>804</width>
+             <width>802</width>
              <height>599</height>
             </rect>
            </property>
@@ -560,7 +559,7 @@ QScrollArea {
                 </widget>
                </item>
                <item>
-                <layout class="QVBoxLayout" name="gudang_table_body_layout">
+                <layout class="QVBoxLayout" name="gudang_table_body">
                  <property name="spacing">
                   <number>0</number>
                  </property>
@@ -683,7 +682,7 @@ QScrollArea {
   </widget>
  </widget>
  <resources>
-  <include location="resources.qrc"/>
+  <include location="../resources.qrc"/>
  </resources>
  <connections/>
 </ui>

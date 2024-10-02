@@ -14,6 +14,7 @@ class Gudang():
     def __connect_and_get_sparepart__(self):
         try:
             sparepart = Sparepart()
+            sparepart.start()
             return sparepart
         except:
             self.__app.show_error('Koneksi database gagal')
@@ -22,44 +23,47 @@ class Gudang():
     def __start__(self):
         self.__table = 'original'
         self.__search = ''
+        self.__table_rows = []
         self.__bind_widgets__()
-        self.__create_and_show_table('original')
+        self.__setup_and_save_table_rows__()
 
     def __bind_widgets__(self):
         self.__app.cari_barang_input.editingFinished.connect(lambda: self.__cari_barang__())
         self.__app.tambah_barang_btn.clicked.connect(lambda: self.__tambah_barang__())
 
-    def __create_and_show_table(self, type):
-        layout = self.__create_and_get_table_layout__()
-        sparepart_data = self.__sparepart.fetch_data() if type == 'original' else self.__sparepart.search_data(self.__search)
+    def __setup_and_save_table_rows__(self):
+        sparepart_data = self.__sparepart.fetch_data()
         for i in range (len(sparepart_data)):
-            row_widget = self.__create_and_get_table_row__(i + 1, sparepart_data[i])
-            layout.addWidget(row_widget)
+            self.__create_and_save_new_row__(i + 1, sparepart_data[i])
 
-        container = self.__create_and_get_table_container__(layout)
-        self.__app.gudang_table_body_layout.addWidget(container)
-
-    def __empty_table__(self):
-        gudang_table_body = self.__app.findChild(QWidget, 'gudang_table_body')
-        if (gudang_table_body is not None):
-            self.__app.gudang_table_body_layout.removeWidget(gudang_table_body)
-            gudang_table_body.deleteLater()
-
-    def __create_and_get_table_layout__(self):
-        layout = QVBoxLayout()
-        layout.setContentsMargins(0, 0, 0, 0)
-        layout.setSpacing(0)
-        return layout
-
-    def __create_and_get_table_container__(self, layout):
-        container = QWidget()
-        container.setObjectName('gudang_table_body')
-        container.setLayout(layout)
-        return container
-
-    def __create_and_get_table_row__(self, index, data):
+    def __create_and_save_new_row__(self, index, data):
         row = GudangTableRow(index, data)
-        return row.create_row()
+        self.__table_rows.append(row)
+        self.__app.gudang_table_body.addWidget(row.create_row())
+
+    def __redisplay_original_table__(self):
+        sparepart_data = self.__sparepart.fetch_data()
+        for i in range (len(sparepart_data)):
+            self.__table_rows[i].redisplay(i + 1, sparepart_data[i])
+            self.__change_row_display(i + 1, 'show')
+
+    def __redisplay_filtered_table__(self, search):
+        sparepart_data = self.__sparepart.search_data(search)
+        i = -1
+        for i in range (len(sparepart_data)):
+            self.__table_rows[i].redisplay(i + 1, sparepart_data[i])
+            self.__change_row_display(i + 1, 'show')
+        else:
+            for n in range (i + 1, len(self.__table_rows)):
+                self.__change_row_display(n + 1, 'hide')
+
+    def __change_row_display(self, index, type):
+        row = self.__app.findChild(QWidget, f'row{index}')
+        if (row is not None):
+            if (type == 'show'):
+                row.show()
+            else:
+                row.hide()
 
     def __cari_barang__(self):
         search = self.__app.cari_barang_input.text()
@@ -67,19 +71,19 @@ class Gudang():
             if (len(search) >= 3):
                 self.__search = search
                 self.__table = 'filtered'
-                self.__empty_table__()
-                self.__create_and_show_table('filtered')
+                self.__redisplay_filtered_table__(search)
             elif (len(search) < 3 and self.__table == 'filtered'):
                 self.__search = ''
                 self.__table = 'original'
-                self.__empty_table__()
-                self.__create_and_show_table('original')
+                self.__redisplay_original_table__()
 
     def __tambah_barang__(self):
         dialog = GudangTambahBarang()
         if (dialog.exec_() == QtWidgets.QDialog.Accepted):
-            self.__search = ''
-            self.__table = 'original'
-            self.__empty_table__()
-            self.__create_and_show_table('original')
+            dialog.data.insert(0, self.__sparepart.get_latest_id())
+            self.__create_and_save_new_row__(len(self.__table_rows) + 1, dialog.data)
+            if (self.__table == 'original'):
+                self.__redisplay_original_table__()
+            else:
+                self.__redisplay_filtered_table__(self.__search)
             pass

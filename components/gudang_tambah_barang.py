@@ -14,7 +14,7 @@ class GudangTambahBarang(QtWidgets.QDialog):
 
     def __show_app__(self):
         current_dir = os.path.dirname(os.path.abspath(__file__))
-        ui_path = os.path.join(current_dir, '../TambahBarang.ui')
+        ui_path = os.path.join(current_dir, '../views/TambahBarang.ui')
         uic.loadUi(ui_path, self)
         self.setWindowFlags(self.windowFlags() & ~Qt.WindowContextHelpButtonHint)
         self.setFixedSize(self.size())
@@ -53,6 +53,7 @@ class GudangTambahBarang(QtWidgets.QDialog):
                 except:
                     self.__show_error__('Gagal menyimpan perubahan')
                 else:
+                    self.data = [kode, nama, int(kuantiti), lokasi]
                     self.accept()
 
     def __validate_simpan__(self, nama, kuantiti):
@@ -68,7 +69,7 @@ class GudangTambahBarang(QtWidgets.QDialog):
                 error['kuantiti'] = 'Kuantiti wajib berupa angka'
             else:
                 if (kuantiti <= 0):
-                    error['kuantiti'] = 'Kuantiti tidak boleh dibawah 1'
+                    error['kuantiti'] = 'Kuantiti tidak boleh dibawah 0'
                 elif (kuantiti > 10000):
                     error['kuantiti'] = 'Kuantiti tidak boleh melebihi 10000'
 
@@ -88,7 +89,7 @@ class GudangTambahBarang(QtWidgets.QDialog):
             self.__nama_error_layout.setContentsMargins(0, 0, 0, 0)
             self.__nama_error_layout.setSpacing(4)
 
-            pixmap = QPixmap('./assets/Error.png').scaled(14, 14)
+            pixmap = QPixmap('assets/Error.png').scaled(14, 14)
 
             self.__nama_error_icon = QLabel()
             self.__nama_error_icon.setPixmap(pixmap)
@@ -129,7 +130,7 @@ class GudangTambahBarang(QtWidgets.QDialog):
             self.__kuantiti_error_layout.setContentsMargins(0, 0, 0, 0)
             self.__kuantiti_error_layout.setSpacing(4)
 
-            pixmap = QPixmap('./assets/Error.png').scaled(14, 14)
+            pixmap = QPixmap('assets/Error.png').scaled(14, 14)
 
             self.__kuantiti_error_icon = QLabel()
             self.__kuantiti_error_icon.setPixmap(pixmap)

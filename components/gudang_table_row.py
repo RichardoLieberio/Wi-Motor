@@ -146,3 +146,12 @@ class GudangTableRow:
             return True
         else:
             return False
+
+    def redisplay(self, index, data):
+        self.__index = index
+        self.__data = data
+
+        self.__no.setText(f'{index}')
+        self.__kode.setText(f'{data[1]}')
+        self.__nama.setText(f'{data[2]}')
+        self.__kuantiti.setText(f'{data[3]}')

@@ -16,7 +16,7 @@ class App(QMainWindow):
 
     def __show_app__(self):
         current_dir = os.path.dirname(os.path.abspath(__file__))
-        ui_path = os.path.join(current_dir, '../App.ui')
+        ui_path = os.path.join(current_dir, '../views/App.ui')
         uic.loadUi(ui_path, self)
         self.showMaximized()
 

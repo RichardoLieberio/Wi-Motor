@@ -17,7 +17,7 @@ class GudangKelola(QtWidgets.QDialog):
 
     def __show_app__(self):
         current_dir = os.path.dirname(os.path.abspath(__file__))
-        ui_path = os.path.join(current_dir, '../Kelola.ui')
+        ui_path = os.path.join(current_dir, '../views/Kelola.ui')
         uic.loadUi(ui_path, self)
         self.setWindowTitle(f'Kelola - {self.__tipe} Barang')
         self.setWindowFlags(self.windowFlags() & ~Qt.WindowContextHelpButtonHint)
@@ -82,7 +82,7 @@ class GudangKelola(QtWidgets.QDialog):
             kuantiti_error_layout.setContentsMargins(0, 0, 0, 0)
             kuantiti_error_layout.setSpacing(4)
 
-            pixmap = QPixmap('./assets/Error.png').scaled(14, 14)
+            pixmap = QPixmap('assets/Error.png').scaled(14, 14)
 
             kuantiti_error_icon = QLabel()
             kuantiti_error_icon.setPixmap(pixmap)

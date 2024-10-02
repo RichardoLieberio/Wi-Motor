@@ -3,6 +3,8 @@ import sqlite3
 class Sparepart:
     def __init__(self):
         self.__conn = sqlite3.connect('wimotor.db')
+
+    def start(self):
         cursor = self.__conn.cursor()
         cursor.execute('''
             CREATE TABLE IF NOT EXISTS sparepart (
@@ -14,6 +16,16 @@ class Sparepart:
             )
         ''')
         self.__conn.commit()
+
+    def get_latest_id(self):
+        cursor = self.__conn.cursor()
+        cursor.execute('''
+            SELECT * FROM sparepart
+            ORDER BY id DESC
+            LIMIT 1
+        ''')
+        result = cursor.fetchone()
+        return result[0] if (result) else 0
 
     def fetch_data(self):
         cursor = self.__conn.cursor()
