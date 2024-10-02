@@ -1,13 +1,18 @@
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QWidget, QHBoxLayout, QLabel, QPushButton
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QEvent, QObject
 
 from components.gudang_kelola import GudangKelola
 
 class GudangTableRow:
-    def __init__(self, index, data):
+    def __init__(self, app, index, data):
+        self.__app = app
         self.__index = index
         self.__data = data
+        self.__double_click_listener = DoubleClickListener(self.__navigate_to_detail__)
+
+    def __navigate_to_detail__(self):
+        self.__app.change_page_to_gudang_detail()
 
     def __create_and_get_no__(self):
         self.__no = QLabel(f'{self.__index}')
@@ -17,6 +22,7 @@ class GudangTableRow:
             font-size: 14px;
             color: rgb(30, 30, 30);
         ''')
+        self.__no.installEventFilter(self.__double_click_listener)
         return self.__no
 
     def __create_and_get_kode__(self):
@@ -27,6 +33,7 @@ class GudangTableRow:
             font-size: 14px;
             color: rgb(30, 30, 30);
         ''')
+        self.__kode.installEventFilter(self.__double_click_listener)
         return self.__kode
 
     def __create_and_get_nama__(self):
@@ -36,6 +43,7 @@ class GudangTableRow:
             font-size: 14px;
             color: rgb(30, 30, 30);
         ''')
+        self.__nama.installEventFilter(self.__double_click_listener)
         return self.__nama
 
     def __create_and_get_kuantiti__(self):
@@ -46,6 +54,7 @@ class GudangTableRow:
             font-size: 14px;
             color: rgb(30, 30, 30);
         ''')
+        self.__kuantiti.installEventFilter(self.__double_click_listener)
         return self.__kuantiti
 
     def __create_and_get_kelola__(self):
@@ -60,6 +69,7 @@ class GudangTableRow:
         container.setMinimumWidth(160)
         container.setMaximumWidth(160)
         container.setLayout(layout)
+        container.installEventFilter(self.__double_click_listener)
         return container
 
     def __create_and_get_ambil__(self):
@@ -100,13 +110,13 @@ class GudangTableRow:
         return tambah
 
     def __ambil_clicked__(self):
-        dialog = GudangKelola(self.__data[0], int(self.__kuantiti.text()), 'Ambil')
+        dialog = GudangKelola(self.__app, self.__data[0], int(self.__kuantiti.text()), 'Ambil')
         if (dialog.exec_() == QtWidgets.QDialog.Accepted):
             self.__set_new_kuantiti__(dialog.new_kuantiti)
             pass
 
     def __tambah_clicked__(self):
-        dialog = GudangKelola(self.__data[0], int(self.__kuantiti.text()), 'Tambah')
+        dialog = GudangKelola(self.__app, self.__data[0], int(self.__kuantiti.text()), 'Tambah')
         if (dialog.exec_() == QtWidgets.QDialog.Accepted):
             self.__set_new_kuantiti__(dialog.new_kuantiti)
             pass
@@ -135,6 +145,7 @@ class GudangTableRow:
             }}
         ''')
         container.setLayout(layout)
+        container.installEventFilter(self.__double_click_listener)
 
         return container
 
@@ -155,3 +166,14 @@ class GudangTableRow:
         self.__kode.setText(f'{data[1]}')
         self.__nama.setText(f'{data[2]}')
         self.__kuantiti.setText(f'{data[3]}')
+
+class DoubleClickListener(QObject):
+    def __init__(self, callback):
+        super().__init__()
+        self.__callback = callback
+
+    def eventFilter(self, obj, event):
+        if (event.type() == QEvent.MouseButtonDblClick and (isinstance(obj, QLabel) or isinstance(obj, QWidget))):
+            self.__callback()
+            return True
+        return False

@@ -7,8 +7,9 @@ from PyQt5.QtWidgets import QWidget, QHBoxLayout, QLabel, QMessageBox
 from models.sparepart import Sparepart
 
 class GudangKelola(QtWidgets.QDialog):
-    def __init__(self, id, current_kuantiti, tipe):
+    def __init__(self, app, id, current_kuantiti, tipe):
         super().__init__()
+        self.__app = app
         self.__id = id
         self.__current_kuantiti = current_kuantiti
         self.__tipe = tipe
@@ -38,7 +39,7 @@ class GudangKelola(QtWidgets.QDialog):
         try:
             self.__sparepart = Sparepart()
         except:
-            self.__show_error__('Koneksi database error')
+            self.__app.show_error('Koneksi database error')
         else:
             kuantiti = self.kuantiti_input.text().strip()
             error = self.__validate_simpan__(kuantiti)
@@ -49,7 +50,7 @@ class GudangKelola(QtWidgets.QDialog):
                 try:
                     self.__sparepart.update_kuantiti(self.__id, self.new_kuantiti)
                 except:
-                    self.__show_error__('Gagal menyimpan perubahan')
+                    self.__app.show_error('Gagal menyimpan perubahan')
                 else:
                     self.accept()
 
@@ -110,13 +111,6 @@ class GudangKelola(QtWidgets.QDialog):
             kuantiti_error.setLayout(kuantiti_error_layout)
             self.setFixedSize(self.width(), self.height() + 18)
             self.gridLayout.addWidget(kuantiti_error, 1, 3)
-
-    def __show_error__(self, message):
-        msg = QMessageBox()
-        msg.setWindowTitle('Error')
-        msg.setIcon(QMessageBox.Critical)
-        msg.setText(message)
-        msg.exec_()
 
     def keyPressEvent(self, event):
         if event.key() == QtCore.Qt.Key_Return or event.key() == QtCore.Qt.Key_Enter:

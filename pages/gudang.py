@@ -1,5 +1,5 @@
 from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QWidget, QVBoxLayout
+from PyQt5.QtWidgets import QWidget
 
 from models.sparepart import Sparepart
 from components.gudang_tambah_barang import GudangTambahBarang
@@ -37,7 +37,7 @@ class Gudang():
             self.__create_and_save_new_row__(i + 1, sparepart_data[i])
 
     def __create_and_save_new_row__(self, index, data):
-        row = GudangTableRow(index, data)
+        row = GudangTableRow(self.__app, index, data)
         self.__table_rows.append(row)
         self.__app.gudang_table_body.addWidget(row.create_row())
 

@@ -41,6 +41,9 @@ class App(QMainWindow):
     def __change_page_to_mekanik__(self):
         self.main_page.setCurrentIndex(2)
 
+    def change_page_to_gudang_detail(self):
+        self.main_page.setCurrentIndex(3)
+
     def show_error(self, message):
         msg = QMessageBox()
         msg.setWindowTitle('Error')
