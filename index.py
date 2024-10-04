@@ -4,4 +4,5 @@ from pages.app import App
 
 app = QApplication([])
 window = App()
+window.showMaximized()
 app.exec_()

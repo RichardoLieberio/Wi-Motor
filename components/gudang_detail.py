@@ -1,11 +1,11 @@
-import os
-from PyQt5 import QtWidgets, uic
+from PyQt5 import QtWidgets
 from PyQt5.QtCore import Qt
 
+from views.py.InformasiBarang import Ui_InformasiBarang
 from components.gudang_edit_barang import GudangEditBarang
 from components.konfirmasi_hapus import KonfirmasiHapus
 
-class InformasiBarang(QtWidgets.QDialog):
+class InformasiBarang(QtWidgets.QDialog, Ui_InformasiBarang):
     def __init__(self, gudang, data):
         super().__init__()
         self.__gudang = gudang
@@ -14,9 +14,7 @@ class InformasiBarang(QtWidgets.QDialog):
         self.__start__()
 
     def __show_app__(self):
-        current_dir = os.path.dirname(os.path.abspath(__file__))
-        ui_path = os.path.join(current_dir, '../views/InformasiBarang.ui')
-        uic.loadUi(ui_path, self)
+        self.setupUi(self)
         self.__show_information__()
         self.setWindowFlags(self.windowFlags() & ~Qt.WindowContextHelpButtonHint)
         self.setFixedSize(self.size())

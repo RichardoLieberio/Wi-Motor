@@ -1,24 +1,17 @@
-import os
 import sys
-from PyQt5 import uic
 from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox
 
+from views.py.App import Ui_App
 from pages.gudang import Gudang
 
-class App(QMainWindow):
+class App(QMainWindow, Ui_App):
     def __init__(self):
         super(App, self).__init__()
+        self.setupUi(self)
         self.__gudang_page = None
         # self.__bon_page = None
         # self.__mekanik_page = None
-        self.__show_app__()
         self.__start__()
-
-    def __show_app__(self):
-        current_dir = os.path.dirname(os.path.abspath(__file__))
-        ui_path = os.path.join(current_dir, '../views/App.ui')
-        uic.loadUi(ui_path, self)
-        self.showMaximized()
 
     def __start__(self):
         self.gudang_menu.setChecked(True)

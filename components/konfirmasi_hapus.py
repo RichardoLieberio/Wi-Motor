@@ -1,8 +1,9 @@
-import os
-from PyQt5 import QtWidgets, QtCore, uic
+from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtCore import Qt
 
-class KonfirmasiHapus(QtWidgets.QDialog):
+from views.py.KonfirmasiHapus import Ui_KonfirmasiHapus
+
+class KonfirmasiHapus(QtWidgets.QDialog, Ui_KonfirmasiHapus):
     def __init__(self, text):
         super().__init__()
         self.__text = text
@@ -10,9 +11,7 @@ class KonfirmasiHapus(QtWidgets.QDialog):
         self.__start__()
 
     def __show_app__(self):
-        current_dir = os.path.dirname(os.path.abspath(__file__))
-        ui_path = os.path.join(current_dir, '../views/KonfirmasiHapus.ui')
-        uic.loadUi(ui_path, self)
+        self.setupUi(self)
         self.setWindowTitle(f'Konfirmasi Penghapusan {self.__text[0].upper() + self.__text[1:].lower()}')
         self.setWindowFlags(self.windowFlags() & ~Qt.WindowContextHelpButtonHint)
         self.setFixedSize(self.size())

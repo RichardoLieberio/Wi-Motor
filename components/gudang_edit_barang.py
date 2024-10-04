@@ -1,10 +1,11 @@
-import os
-from PyQt5 import QtWidgets, QtCore, uic
+from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QWidget, QHBoxLayout, QLabel
 
-class GudangEditBarang(QtWidgets.QDialog):
+from views.py.EditBarang import Ui_EditBarang
+
+class GudangEditBarang(QtWidgets.QDialog, Ui_EditBarang):
     def __init__(self, gudang, data):
         super().__init__()
         self.__gudang = gudang
@@ -13,9 +14,7 @@ class GudangEditBarang(QtWidgets.QDialog):
         self.__start__()
 
     def __show_app__(self):
-        current_dir = os.path.dirname(os.path.abspath(__file__))
-        ui_path = os.path.join(current_dir, '../views/EditBarang.ui')
-        uic.loadUi(ui_path, self)
+        self.setupUi(self)
         self.setWindowFlags(self.windowFlags() & ~Qt.WindowContextHelpButtonHint)
         self.setFixedSize(self.size())
 

@@ -1,10 +1,11 @@
-import os
-from PyQt5 import QtWidgets, QtCore, uic
+from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QWidget, QHBoxLayout, QLabel
 
-class GudangKelola(QtWidgets.QDialog):
+from views.py.Kelola import Ui_Kelola
+
+class GudangKelola(QtWidgets.QDialog, Ui_Kelola):
     def __init__(self, gudang, id, current_kuantiti, tipe):
         super().__init__()
         self.__gudang = gudang
@@ -15,9 +16,7 @@ class GudangKelola(QtWidgets.QDialog):
         self.__start__()
 
     def __show_app__(self):
-        current_dir = os.path.dirname(os.path.abspath(__file__))
-        ui_path = os.path.join(current_dir, '../views/Kelola.ui')
-        uic.loadUi(ui_path, self)
+        self.setupUi(self)
         self.setWindowTitle(f'Kelola - {self.__tipe} Barang')
         self.setWindowFlags(self.windowFlags() & ~Qt.WindowContextHelpButtonHint)
         self.setFixedSize(self.size())

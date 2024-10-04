@@ -1,10 +1,11 @@
-import os
-from PyQt5 import QtWidgets, QtCore, uic
+from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QWidget, QHBoxLayout, QLabel
 
-class GudangTambahBarang(QtWidgets.QDialog):
+from views.py.TambahBarang import Ui_TambahBarang
+
+class GudangTambahBarang(QtWidgets.QDialog, Ui_TambahBarang):
     def __init__(self, gudang):
         super().__init__()
         self.__gudang = gudang
@@ -12,9 +13,7 @@ class GudangTambahBarang(QtWidgets.QDialog):
         self.__start__()
 
     def __show_app__(self):
-        current_dir = os.path.dirname(os.path.abspath(__file__))
-        ui_path = os.path.join(current_dir, '../views/TambahBarang.ui')
-        uic.loadUi(ui_path, self)
+        self.setupUi(self)
         self.setWindowFlags(self.windowFlags() & ~Qt.WindowContextHelpButtonHint)
         self.setFixedSize(self.size())
 
