@@ -1,0 +1,9 @@
+<RCC>
+  <qresource prefix="Menu">
+    <file>assets/wimotor.jpeg</file>
+    <file>assets/Warehouse.png</file>
+    <file>assets/Error.png</file>
+    <file>assets/Recipe.png</file>
+    <file>assets/Mechanic.png</file>
+  </qresource>
+</RCC>
