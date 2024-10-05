@@ -1,3 +1,4 @@
+import os
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap
@@ -76,7 +77,9 @@ class GudangTambahBarang(QtWidgets.QDialog, Ui_TambahBarang):
     def __show_input_error__(self, error):
         nama_error = self.findChild(QWidget, 'nama_error')
         kuantiti_error = self.findChild(QWidget, 'kuantiti_error')
-        pixmap = QPixmap('assets/Error.png').scaled(14, 14)
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        error_path = os.path.join(current_dir, '../assets/Error.png')
+        pixmap = QPixmap(error_path).scaled(14, 14)
 
         if (nama_error and 'nama' not in error):
             self.gridLayout.removeWidget(nama_error)

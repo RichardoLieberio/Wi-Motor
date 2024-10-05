@@ -1,3 +1,4 @@
+import os
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap
@@ -77,7 +78,9 @@ class GudangEditBarang(QtWidgets.QDialog, Ui_EditBarang):
             self.__nama_error_layout.setContentsMargins(0, 0, 0, 0)
             self.__nama_error_layout.setSpacing(4)
 
-            pixmap = QPixmap('assets/Error.png').scaled(14, 14)
+            current_dir = os.path.dirname(os.path.abspath(__file__))
+            error_path = os.path.join(current_dir, '../assets/Error.png')
+            pixmap = QPixmap(error_path).scaled(14, 14)
 
             self.__nama_error_icon = QLabel()
             self.__nama_error_icon.setPixmap(pixmap)

@@ -1,3 +1,4 @@
+import os
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap
@@ -80,7 +81,9 @@ class GudangKelola(QtWidgets.QDialog, Ui_Kelola):
             kuantiti_error_layout.setContentsMargins(0, 0, 0, 0)
             kuantiti_error_layout.setSpacing(4)
 
-            pixmap = QPixmap('assets/Error.png').scaled(14, 14)
+            current_dir = os.path.dirname(os.path.abspath(__file__))
+            error_path = os.path.join(current_dir, '../assets/Error.png')
+            pixmap = QPixmap(error_path).scaled(14, 14)
 
             kuantiti_error_icon = QLabel()
             kuantiti_error_icon.setPixmap(pixmap)
