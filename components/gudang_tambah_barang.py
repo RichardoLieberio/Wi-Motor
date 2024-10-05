@@ -48,11 +48,13 @@ class GudangTambahBarang(QtWidgets.QDialog, Ui_TambahBarang):
             self.__show_input_error__(error)
         else:
             try:
-                self.__gudang.sparepart.tambah_barang_baru(kode, nama, int(kuantiti), lokasi)
+                if (kuantiti == ''):
+                    kuantiti = 0
+                self.__gudang.sparepart.tambah_barang_baru(kode, nama, kuantiti, lokasi)
             except:
                 self.__gudang.app.show_error('Gagal menyimpan perubahan')
             else:
-                self.data = [kode, nama, int(kuantiti), lokasi]
+                self.data = [kode, nama, kuantiti, lokasi]
                 self.accept()
 
     def __validate_simpan__(self, nama, kuantiti):
@@ -67,7 +69,7 @@ class GudangTambahBarang(QtWidgets.QDialog, Ui_TambahBarang):
             except:
                 error['kuantiti'] = 'Kuantiti wajib berupa angka'
             else:
-                if (kuantiti <= 0):
+                if (kuantiti < 0):
                     error['kuantiti'] = 'Kuantiti tidak boleh dibawah 0'
                 elif (kuantiti > 10000):
                     error['kuantiti'] = 'Kuantiti tidak boleh melebihi 10000'

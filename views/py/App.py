@@ -302,8 +302,8 @@ class Ui_App(object):
         self.nama_label.setText(_translate("MainWindow", "Nama barang"))
         self.kuantiti_label.setText(_translate("MainWindow", "Kuantiti"))
         self.kelola_label.setText(_translate("MainWindow", "Kelola"))
-        self.bon_page_label.setText(_translate("MainWindow", "Halaman belum tersedia 1"))
-        self.mekanik_page_label.setText(_translate("MainWindow", "Halaman belum tersedia 2"))
+        self.bon_page_label.setText(_translate("MainWindow", "Halaman Bon belum tersedia"))
+        self.mekanik_page_label.setText(_translate("MainWindow", "Halaman Mekanik belum tersedia"))
 import resources
 
 

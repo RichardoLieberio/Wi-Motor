@@ -11,7 +11,7 @@ class Sparepart:
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 kode_barang TEXT(30),
                 nama_barang TEXT(50),
-                kuantiti INTEGER NOT NULL DEFAULT 0,
+                kuantiti INTEGER,
                 lokasi TEXT(100)
             )
         ''')

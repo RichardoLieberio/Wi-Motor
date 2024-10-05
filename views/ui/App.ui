@@ -127,7 +127,7 @@ QScrollArea {
           <enum>Qt::AutoText</enum>
          </property>
          <property name="pixmap">
-          <pixmap resource="../resources.qrc">:/Menu/assets/wimotor.jpeg</pixmap>
+          <pixmap resource="../../resources.qrc">:/Menu/assets/wimotor.jpeg</pixmap>
          </property>
         </widget>
        </item>
@@ -171,7 +171,7 @@ QScrollArea {
              <string>Gudang</string>
             </property>
             <property name="icon">
-             <iconset resource="../resources.qrc">
+             <iconset resource="../../resources.qrc">
               <normaloff>:/Menu/assets/Warehouse.png</normaloff>:/Menu/assets/Warehouse.png</iconset>
             </property>
             <property name="checkable">
@@ -191,7 +191,7 @@ QScrollArea {
              <string>Bon</string>
             </property>
             <property name="icon">
-             <iconset resource="../resources.qrc">
+             <iconset resource="../../resources.qrc">
               <normaloff>:/Menu/assets/Recipe.png</normaloff>:/Menu/assets/Recipe.png</iconset>
             </property>
             <property name="checkable">
@@ -208,7 +208,7 @@ QScrollArea {
              <string>Mekanik</string>
             </property>
             <property name="icon">
-             <iconset resource="../resources.qrc">
+             <iconset resource="../../resources.qrc">
               <normaloff>:/Menu/assets/Mechanic.png</normaloff>:/Menu/assets/Mechanic.png</iconset>
             </property>
             <property name="checkable">
@@ -241,7 +241,7 @@ QScrollArea {
     <item>
      <widget class="QStackedWidget" name="main_page">
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="gudang_page">
        <property name="styleSheet">
@@ -608,7 +608,7 @@ QScrollArea {
         <item>
          <widget class="QLabel" name="bon_page_label">
           <property name="text">
-           <string>Halaman belum tersedia 1</string>
+           <string>Halaman Bon belum tersedia</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
@@ -640,7 +640,7 @@ QScrollArea {
         <item>
          <widget class="QLabel" name="mekanik_page_label">
           <property name="text">
-           <string>Halaman belum tersedia 2</string>
+           <string>Halaman Mekanik belum tersedia</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
@@ -655,6 +655,7 @@ QScrollArea {
   </widget>
  </widget>
  <resources>
+  <include location="../../resources.qrc"/>
   <include location="../resources.qrc"/>
  </resources>
  <connections/>
